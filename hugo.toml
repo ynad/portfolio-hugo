@@ -1,0 +1,139 @@
+# =============================================================================
+# Hugo Configuration — IT Consultant Portfolio
+# =============================================================================
+
+baseURL = "https://danielevercelli.it/"
+title = "Daniele Vercelli — IT Consultant"
+copyright = "© {year} Daniele Vercelli. All rights reserved."
+
+# Content & Build
+defaultContentLanguage = "it"
+defaultContentLanguageInSubdir = true
+enableRobotsTXT = true
+enableEmoji = true
+paginate = 6
+summaryLength = 30
+
+# Disable unused built-in features for lighter builds
+disableKinds = ["taxonomy", "term"]
+
+# =============================================================================
+# Languages
+# =============================================================================
+
+[languages]
+  [languages.it]
+    languageName = "Italiano"
+    languageCode = "it"
+    weight = 1
+    title = "Daniele Vercelli — Consulente IT"
+    [languages.it.params]
+      description = "Consulente IT specializzato in architettura cloud, DevOps e automazione infrastrutturale."
+      locale = "it_IT"
+
+  [languages.en]
+    languageName = "English"
+    languageCode = "en"
+    weight = 2
+    title = "Daniele Vercelli — IT Consultant"
+    [languages.en.params]
+      description = "IT Consultant specializing in cloud architecture, DevOps, and infrastructure automation."
+      locale = "en_US"
+
+# =============================================================================
+# Menus
+# =============================================================================
+
+[menus]
+  [[menus.main]]
+    identifier = "home"
+    name = "Home"
+    url = "/"
+    weight = 1
+  [[menus.main]]
+    identifier = "projects"
+    name = "Projects"
+    url = "/projects/"
+    weight = 2
+  [[menus.main]]
+    identifier = "blog"
+    name = "Blog"
+    url = "/blog/"
+    weight = 3
+  [[menus.main]]
+    identifier = "contact"
+    name = "Contact"
+    url = "/#contact"
+    weight = 4
+
+# =============================================================================
+# Markup
+# =============================================================================
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = false
+  [markup.highlight]
+    style = "dracula"
+    lineNos = false
+    noClasses = false
+
+# =============================================================================
+# Outputs
+# =============================================================================
+
+[outputs]
+  home = ["HTML", "RSS"]
+
+# =============================================================================
+# Sitemap
+# =============================================================================
+
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+
+# =============================================================================
+# Params
+# =============================================================================
+
+[params]
+  # Site identity
+  author = "Dani"
+  tagline = "Cloud · DevOps · Infrastructure"
+  ogImage = "/images/og-image.png"
+
+  # Contact form endpoint (Cloudflare Pages Function)
+  contactEndpoint = "/api/contact"
+
+  # Social links (also defined in data/social.yaml)
+  email = "hello@yourdomain.it"
+
+  # Design
+  colorScheme = "auto"  # auto, light, dark
+
+# =============================================================================
+# Minify
+# =============================================================================
+
+[minify]
+  disableCSS = false
+  disableHTML = false
+  disableJS = false
+  disableJSON = false
+  disableSVG = false
+  disableXML = false
+  [minify.tdewolff]
+    [minify.tdewolff.html]
+      keepWhitespace = false
+      keepDefaultAttrVals = true
+    [minify.tdewolff.css]
+      precision = 0
+
+# =============================================================================
+# Build
+# =============================================================================
+
+[build]
+  writeStats = true  # Required for Tailwind CSS purging

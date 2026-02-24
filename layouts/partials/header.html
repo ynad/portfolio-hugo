@@ -1,0 +1,85 @@
+{{/* ==========================================================================
+Header — Sticky navigation with language switcher and dark mode toggle
+========================================================================== */}}
+
+<header
+    class="sticky top-0 z-50 border-b border-surface-100 bg-white/80 backdrop-blur-lg dark:border-surface-800 dark:bg-surface-950/80">
+    <nav class="container-wide flex items-center justify-between py-4" aria-label="{{ i18n " mainNavigation" }}">
+
+        {{/* Logo / Site name */}}
+        <a href="{{ .Site.Home.RelPermalink }}"
+            class="text-lg font-bold tracking-tight text-surface-900 dark:text-white">
+            {{ .Site.Params.author | default .Site.Title }}
+        </a>
+
+        {{/* Desktop navigation */}}
+        <div class="hidden items-center gap-8 md:flex">
+            {{/* Menu links */}}
+            {{ range .Site.Menus.main }}
+            <a href="{{ .URL }}" class="nav-link{{ if $.IsMenuCurrent " main" . }} text-primary-600
+                dark:text-primary-400{{ end }}">
+                {{ .Name }}
+            </a>
+            {{ end }}
+
+            {{/* Language switcher */}}
+            {{- partial "language-switcher.html" . -}}
+
+            {{/* Dark mode toggle */}}
+            <button id="theme-toggle" type="button"
+                class="rounded-lg p-2 text-surface-500 hover:bg-surface-100 hover:text-surface-700 dark:text-surface-400 dark:hover:bg-surface-800 dark:hover:text-surface-200"
+                aria-label="{{ i18n " toggleTheme" }}">
+                {{/* Sun icon (shown in dark mode) */}}
+                <svg class="hidden h-5 w-5 dark:block" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+                </svg>
+                {{/* Moon icon (shown in light mode) */}}
+                <svg class="block h-5 w-5 dark:hidden" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+                </svg>
+            </button>
+        </div>
+
+        {{/* Mobile menu button */}}
+        <button id="mobile-menu-btn" type="button"
+            class="rounded-lg p-2 text-surface-600 hover:bg-surface-100 md:hidden dark:text-surface-400 dark:hover:bg-surface-800"
+            aria-label="{{ i18n " openMenu" }}" aria-expanded="false">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+        </button>
+    </nav>
+
+    {{/* Mobile menu (hidden by default) */}}
+    <div id="mobile-menu"
+        class="hidden border-t border-surface-100 bg-white px-6 pb-6 pt-4 md:hidden dark:border-surface-800 dark:bg-surface-950">
+        <div class="flex flex-col gap-4">
+            {{ range .Site.Menus.main }}
+            <a href="{{ .URL }}" class="nav-link text-base">{{ .Name }}</a>
+            {{ end }}
+
+            <div class="flex items-center gap-4 border-t border-surface-100 pt-4 dark:border-surface-800">
+                {{- partial "language-switcher.html" . -}}
+
+                <button id="theme-toggle-mobile" type="button"
+                    class="rounded-lg p-2 text-surface-500 hover:bg-surface-100 dark:text-surface-400 dark:hover:bg-surface-800"
+                    aria-label="{{ i18n " toggleTheme" }}">
+                    <svg class="hidden h-5 w-5 dark:block" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+                    </svg>
+                    <svg class="block h-5 w-5 dark:hidden" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,81 @@
+{{ define "main" }}
+
+<article class="section">
+    <div class="container-narrow">
+
+        {{/* Header */}}
+        <header class="mb-12 text-center">
+            {{ if .Params.technologies }}
+            <div class="mb-4 flex flex-wrap justify-center gap-2">
+                {{ range .Params.technologies }}
+                <span class="badge">{{ . }}</span>
+                {{ end }}
+            </div>
+            {{ end }}
+
+            <h1 class="mb-4 text-3xl font-bold text-surface-900 sm:text-4xl dark:text-white">
+                {{ .Title }}
+            </h1>
+
+            {{ if .Params.summary }}
+            <p class="mx-auto max-w-2xl text-lg text-surface-600 dark:text-surface-400">
+                {{ .Params.summary }}
+            </p>
+            {{ end }}
+
+            {{/* Meta info */}}
+            <div
+                class="mt-6 flex flex-wrap items-center justify-center gap-4 text-sm text-surface-500 dark:text-surface-400">
+                {{ if .Date }}
+                <time datetime="{{ .Date.Format " 2006-01-02" }}">
+                    {{ .Date.Format "2 January 2006" }}
+                </time>
+                {{ end }}
+                {{ if .Params.client }}
+                <span>·</span>
+                <span>{{ i18n "client" }}: {{ .Params.client }}</span>
+                {{ end }}
+                {{ if .Params.duration }}
+                <span>·</span>
+                <span>{{ .Params.duration }}</span>
+                {{ end }}
+                {{ if .ReadingTime }}
+                <span>·</span>
+                <span>{{ .ReadingTime }} min {{ i18n "readingTime" }}</span>
+                {{ end }}
+            </div>
+        </header>
+
+        {{/* Featured image */}}
+        {{ if .Params.image }}
+        {{ $img := resources.Get (printf "images/%s" .Params.image) }}
+        {{ if $img }}
+        {{ $full := $img.Resize "1200x webp" }}
+        <figure class="mb-12">
+            <img src="{{ $full.RelPermalink }}" alt="{{ .Title }}" width="{{ $full.Width }}" height="{{ $full.Height }}"
+                class="rounded-2xl" loading="lazy">
+        </figure>
+        {{ end }}
+        {{ end }}
+
+        {{/* Content */}}
+        <div class="prose-custom mx-auto">
+            {{ .Content }}
+        </div>
+
+        {{/* Back link */}}
+        <div class="mt-16 text-center">
+            {{ if eq .Section "projects" }}
+            <a href="{{ " projects" | relLangURL }}" class="btn-outline">
+                ← {{ i18n "backToProjects" }}
+            </a>
+            {{ else if eq .Section "blog" }}
+            <a href="{{ " blog" | relLangURL }}" class="btn-outline">
+                ← {{ i18n "backToBlog" }}
+            </a>
+            {{ end }}
+        </div>
+    </div>
+</article>
+
+{{ end }}

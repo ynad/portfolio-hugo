@@ -1,0 +1,204 @@
+{{ define "main" }}
+
+{{/* ==========================================================================
+Hero Section
+========================================================================== */}}
+<section class="section" id="hero">
+    <div class="container-narrow text-center">
+        <div class="fade-in">
+            <p class="mb-4 text-sm font-semibold uppercase tracking-widest text-primary-600 dark:text-primary-400">
+                {{ i18n "heroGreeting" }}
+            </p>
+            <h1 class="mb-6 text-4xl font-bold tracking-tight text-surface-900 sm:text-5xl lg:text-6xl dark:text-white">
+                {{ .Site.Params.author }}
+            </h1>
+            <p class="mx-auto mb-8 max-w-2xl text-lg text-surface-600 dark:text-surface-400">
+                {{ .Params.subtitle | default (i18n "heroSubtitle") }}
+            </p>
+            <div class="flex flex-wrap items-center justify-center gap-4">
+                <a href="#projects" class="btn-primary">
+                    {{ i18n "heroCtaPrimary" }}
+                </a>
+                <a href="#contact" class="btn-outline">
+                    {{ i18n "heroCtaSecondary" }}
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{/* ==========================================================================
+About Section
+========================================================================== */}}
+<section class="section bg-surface-50 dark:bg-surface-900" id="about">
+    <div class="container-narrow">
+        <div class="fade-in">
+            <h2 class="mb-12 text-center text-3xl font-bold text-surface-900 dark:text-white">
+                {{ i18n "aboutTitle" }}
+            </h2>
+            <div class="grid items-center gap-12 md:grid-cols-3">
+                {{/* Profile image */}}
+                <div class="flex justify-center md:col-span-1">
+                    <div class="h-48 w-48 overflow-hidden rounded-2xl bg-surface-200 dark:bg-surface-800">
+                        {{ $img := resources.Get "images/profile.webp" }}
+                        {{ if $img }}
+                        <img src="{{ $img.RelPermalink }}" alt="{{ .Site.Params.author }}" width="192" height="192"
+                            class="h-full w-full object-cover" loading="lazy">
+                        {{ else }}
+                        <div class="flex h-full w-full items-center justify-center text-4xl text-surface-400">
+                            {{ substr .Site.Params.author 0 1 }}
+                        </div>
+                        {{ end }}
+                    </div>
+                </div>
+                {{/* Bio text */}}
+                <div class="md:col-span-2">
+                    <div class="prose-custom">
+                        {{ .Content }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{/* ==========================================================================
+Skills Section
+========================================================================== */}}
+{{ with site.Data.skills }}
+<section class="section" id="skills">
+    <div class="container-wide">
+        <div class="fade-in">
+            <h2 class="mb-12 text-center text-3xl font-bold text-surface-900 dark:text-white">
+                {{ i18n "skillsTitle" }}
+            </h2>
+            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {{ range .items }}
+                <div class="card text-center">
+                    <div
+                        class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary-50 text-primary-600 dark:bg-primary-950 dark:text-primary-400">
+                        {{ with .icon }}
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="{{ . }}" />
+                        </svg>
+                        {{ else }}
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+                        </svg>
+                        {{ end }}
+                    </div>
+                    <h3 class="mb-2 text-lg font-semibold text-surface-900 dark:text-white">{{ .name }}</h3>
+                    <p class="text-sm text-surface-500 dark:text-surface-400">{{ .description }}</p>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</section>
+{{ end }}
+
+{{/* ==========================================================================
+Services Section
+========================================================================== */}}
+{{ with site.Data.services }}
+<section class="section bg-surface-50 dark:bg-surface-900" id="services">
+    <div class="container-wide">
+        <div class="fade-in">
+            <h2 class="mb-12 text-center text-3xl font-bold text-surface-900 dark:text-white">
+                {{ i18n "servicesTitle" }}
+            </h2>
+            <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                {{ range .items }}
+                <div class="card">
+                    <h3 class="mb-3 text-xl font-semibold text-surface-900 dark:text-white">{{ .name }}</h3>
+                    <p class="text-surface-600 dark:text-surface-400">{{ .description }}</p>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</section>
+{{ end }}
+
+{{/* ==========================================================================
+Projects Section (Featured)
+========================================================================== */}}
+<section class="section" id="projects">
+    <div class="container-wide">
+        <div class="fade-in">
+            <h2 class="mb-4 text-center text-3xl font-bold text-surface-900 dark:text-white">
+                {{ i18n "projectsTitle" }}
+            </h2>
+            <p class="mx-auto mb-12 max-w-2xl text-center text-surface-600 dark:text-surface-400">
+                {{ i18n "projectsSubtitle" }}
+            </p>
+
+            <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                {{ $projects := where .Site.RegularPages "Section" "projects" }}
+                {{ range first 6 (sort $projects "Params.weight" "asc") }}
+                <a href="{{ .RelPermalink }}" class="card group block">
+                    {{/* Project image */}}
+                    {{ if .Params.image }}
+                    {{ $img := resources.Get (printf "images/%s" .Params.image) }}
+                    {{ if $img }}
+                    {{ $thumb := $img.Resize "800x450 webp" }}
+                    <img src="{{ $thumb.RelPermalink }}" alt="{{ .Title }}" width="{{ $thumb.Width }}"
+                        height="{{ $thumb.Height }}" class="mb-4 rounded-lg" loading="lazy">
+                    {{ end }}
+                    {{ end }}
+
+                    {{/* Tags */}}
+                    {{ if .Params.technologies }}
+                    <div class="mb-3 flex flex-wrap gap-2">
+                        {{ range first 3 .Params.technologies }}
+                        <span class="badge">{{ . }}</span>
+                        {{ end }}
+                    </div>
+                    {{ end }}
+
+                    <h3
+                        class="mb-2 text-lg font-semibold text-surface-900 transition-colors group-hover:text-primary-600 dark:text-white dark:group-hover:text-primary-400">
+                        {{ .Title }}
+                    </h3>
+                    <p class="text-sm text-surface-500 dark:text-surface-400">
+                        {{ .Params.summary | default .Summary }}
+                    </p>
+                </a>
+                {{ end }}
+            </div>
+
+            {{/* View all projects link */}}
+            {{ $projectsPage := .Site.GetPage "/projects" }}
+            {{ if $projectsPage }}
+            <div class="mt-12 text-center">
+                <a href="{{ $projectsPage.RelPermalink }}" class="btn-outline">
+                    {{ i18n "viewAllProjects" }}
+                </a>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section>
+
+{{/* ==========================================================================
+Contact Section
+========================================================================== */}}
+<section class="section bg-surface-50 dark:bg-surface-900" id="contact">
+    <div class="container-narrow">
+        <div class="fade-in">
+            <h2 class="mb-4 text-center text-3xl font-bold text-surface-900 dark:text-white">
+                {{ i18n "contactTitle" }}
+            </h2>
+            <p class="mx-auto mb-12 max-w-xl text-center text-surface-600 dark:text-surface-400">
+                {{ i18n "contactSubtitle" }}
+            </p>
+
+            <div class="mx-auto max-w-lg">
+                {{- partial "contact-form.html" . -}}
+            </div>
+        </div>
+    </div>
+</section>
+
+{{ end }}

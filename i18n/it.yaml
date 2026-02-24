@@ -1,0 +1,49 @@
+# =============================================================================
+# Italian Translations
+# =============================================================================
+
+# Navigation
+mainNavigation: "Navigazione principale"
+openMenu: "Apri menu"
+toggleTheme: "Cambia tema"
+
+# Hero
+heroGreeting: "Ciao, sono"
+heroSubtitle: "Consulente IT specializzato in architettura cloud, DevOps e automazione infrastrutturale."
+heroCtaPrimary: "Vedi i miei progetti"
+heroCtaSecondary: "Contattami"
+
+# Sections
+aboutTitle: "Chi sono"
+skillsTitle: "Competenze"
+servicesTitle: "Servizi"
+projectsTitle: "Progetti"
+projectsSubtitle: "Una selezione dei progetti più significativi su cui ho lavorato."
+contactTitle: "Contattami"
+contactSubtitle: "Hai un progetto in mente? Scrivimi e parliamone."
+
+# Projects
+viewAllProjects: "Vedi tutti i progetti"
+backToProjects: "Torna ai progetti"
+client: "Cliente"
+readingTime: "di lettura"
+
+# Blog
+backToBlog: "Torna al blog"
+
+# Contact Form
+formName: "Nome"
+formNamePlaceholder: "Il tuo nome"
+formEmail: "Email"
+formEmailPlaceholder: "la-tua@email.it"
+formMessage: "Messaggio"
+formMessagePlaceholder: "Raccontami del tuo progetto..."
+formSubmit: "Invia messaggio"
+formSending: "Invio in corso..."
+formSuccess: "Messaggio inviato con successo! Ti risponderò al più presto."
+formError: "Si è verificato un errore. Riprova o scrivimi direttamente via email."
+
+# Footer
+allRightsReserved: "Tutti i diritti riservati."
+privacyPolicy: "Privacy Policy"
+cookiePolicy: "Cookie Policy"

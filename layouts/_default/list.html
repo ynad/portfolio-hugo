@@ -1,0 +1,59 @@
+{{ define "main" }}
+
+<section class="section">
+    <div class="container-wide">
+        <h1 class="mb-12 text-center text-4xl font-bold text-surface-900 dark:text-white">
+            {{ .Title }}
+        </h1>
+
+        {{ if .Content }}
+        <div class="prose-custom mx-auto mb-12 max-w-2xl text-center">
+            {{ .Content }}
+        </div>
+        {{ end }}
+
+        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {{ range .Pages }}
+            <a href="{{ .RelPermalink }}" class="card group block">
+                {{ if .Params.image }}
+                {{ $img := resources.Get (printf "images/%s" .Params.image) }}
+                {{ if $img }}
+                {{ $thumb := $img.Resize "800x450 webp" }}
+                <img src="{{ $thumb.RelPermalink }}" alt="{{ .Title }}" width="{{ $thumb.Width }}"
+                    height="{{ $thumb.Height }}" class="mb-4 rounded-lg" loading="lazy">
+                {{ end }}
+                {{ end }}
+
+                {{ if .Params.technologies }}
+                <div class="mb-3 flex flex-wrap gap-2">
+                    {{ range first 3 .Params.technologies }}
+                    <span class="badge">{{ . }}</span>
+                    {{ end }}
+                </div>
+                {{ end }}
+
+                <h2
+                    class="mb-2 text-lg font-semibold text-surface-900 transition-colors group-hover:text-primary-600 dark:text-white dark:group-hover:text-primary-400">
+                    {{ .Title }}
+                </h2>
+
+                <p class="text-sm text-surface-500 dark:text-surface-400">
+                    {{ .Params.summary | default .Summary }}
+                </p>
+
+                {{ if .Date }}
+                <time datetime="{{ .Date.Format " 2006-01-02" }}"
+                    class="mt-3 block text-xs text-surface-400 dark:text-surface-500">
+                    {{ .Date.Format "2 January 2006" }}
+                </time>
+                {{ end }}
+            </a>
+            {{ end }}
+        </div>
+
+        {{/* Pagination */}}
+        {{ template "_internal/pagination.html" . }}
+    </div>
+</section>
+
+{{ end }}

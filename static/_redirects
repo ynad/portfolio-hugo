@@ -1,0 +1,5 @@
+# Redirect www to apex domain
+https://www.yourdomain.it/* https://yourdomain.it/:splat 301
+
+# Default language redirect (optional)
+/ /it/ 302

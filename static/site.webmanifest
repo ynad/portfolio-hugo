@@ -1,0 +1,16 @@
+{
+    "name": "Dani — IT Consultant",
+    "short_name": "Dani Portfolio",
+    "description": "IT Consultant specializing in cloud architecture, DevOps, and infrastructure automation.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#3b82f6",
+    "icons": [
+        {
+            "src": "/favicon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml"
+        }
+    ]
+}

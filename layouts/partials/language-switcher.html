@@ -1,0 +1,35 @@
+{{/* ==========================================================================
+Language Switcher — IT/EN toggle
+========================================================================== */}}
+
+<div class="flex items-center gap-1 rounded-lg border border-surface-200 p-0.5 dark:border-surface-700">
+    {{ if .IsTranslated }}
+    {{/* Current language */}}
+    <span class="rounded-md bg-primary-600 px-2.5 py-1 text-xs font-semibold uppercase text-white">
+        {{ .Language.Lang }}
+    </span>
+    {{/* Other languages */}}
+    {{ range .Translations }}
+    <a href="{{ .Permalink }}"
+        class="rounded-md px-2.5 py-1 text-xs font-semibold uppercase text-surface-500 transition-colors hover:text-surface-800 dark:text-surface-400 dark:hover:text-white"
+        hreflang="{{ .Language.Lang }}">
+        {{ .Language.Lang }}
+    </a>
+    {{ end }}
+    {{ else }}
+    {{/* Fallback: link to home in each language */}}
+    {{ range .Site.Languages }}
+    {{ if eq .Lang $.Language.Lang }}
+    <span class="rounded-md bg-primary-600 px-2.5 py-1 text-xs font-semibold uppercase text-white">
+        {{ .Lang }}
+    </span>
+    {{ else }}
+    <a href="{{ .Lang | printf " /%s/" }}"
+        class="rounded-md px-2.5 py-1 text-xs font-semibold uppercase text-surface-500 transition-colors hover:text-surface-800 dark:text-surface-400 dark:hover:text-white"
+        hreflang="{{ .Lang }}">
+        {{ .Lang }}
+    </a>
+    {{ end }}
+    {{ end }}
+    {{ end }}
+</div>

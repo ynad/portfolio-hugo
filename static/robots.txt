@@ -1,0 +1,9 @@
+# Robots.txt for IT Consultant Portfolio
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://yourdomain.it/sitemap.xml
+
+# Disallow admin/private areas (if any)
+Disallow: /api/

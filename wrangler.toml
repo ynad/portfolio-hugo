@@ -1,0 +1,11 @@
+# =============================================================================
+# Cloudflare Pages Functions Configuration
+# =============================================================================
+
+name = "portfolio"
+compatibility_date = "2024-01-01"
+
+[vars]
+# Environment variables (set in Cloudflare Dashboard for production)
+# RESEND_API_KEY = "re_xxxxx"
+# CONTACT_EMAIL = "you@yourdomain.it"

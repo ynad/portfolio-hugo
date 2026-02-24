@@ -1,0 +1,17 @@
+# =============================================================================
+# Social Links — Used in footer and JSON-LD
+# icon: matches filename in layouts/partials/icons/{icon}.html
+# =============================================================================
+
+links:
+  - name: "GitHub"
+    url: "https://github.com/ynad"
+    icon: "github"
+
+  - name: "LinkedIn"
+    url: "https://linkedin.com/in/yourprofile"
+    icon: "linkedin"
+
+  - name: "Email"
+    url: "mailto:me@danielevercelli.it"
+    icon: "email"

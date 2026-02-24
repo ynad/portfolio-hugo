@@ -1,0 +1,49 @@
+# =============================================================================
+# English Translations
+# =============================================================================
+
+# Navigation
+mainNavigation: "Main navigation"
+openMenu: "Open menu"
+toggleTheme: "Toggle theme"
+
+# Hero
+heroGreeting: "Hi, I'm"
+heroSubtitle: "IT Consultant specializing in cloud architecture, DevOps, and infrastructure automation."
+heroCtaPrimary: "View my projects"
+heroCtaSecondary: "Get in touch"
+
+# Sections
+aboutTitle: "About me"
+skillsTitle: "Skills"
+servicesTitle: "Services"
+projectsTitle: "Projects"
+projectsSubtitle: "A selection of the most significant projects I've worked on."
+contactTitle: "Get in touch"
+contactSubtitle: "Have a project in mind? Drop me a message and let's talk about it."
+
+# Projects
+viewAllProjects: "View all projects"
+backToProjects: "Back to projects"
+client: "Client"
+readingTime: "read"
+
+# Blog
+backToBlog: "Back to blog"
+
+# Contact Form
+formName: "Name"
+formNamePlaceholder: "Your name"
+formEmail: "Email"
+formEmailPlaceholder: "your@email.com"
+formMessage: "Message"
+formMessagePlaceholder: "Tell me about your project..."
+formSubmit: "Send message"
+formSending: "Sending..."
+formSuccess: "Message sent successfully! I'll get back to you soon."
+formError: "Something went wrong. Please try again or email me directly."
+
+# Footer
+allRightsReserved: "All rights reserved."
+privacyPolicy: "Privacy Policy"
+cookiePolicy: "Cookie Policy"

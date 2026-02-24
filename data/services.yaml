@@ -1,0 +1,22 @@
+# =============================================================================
+# Services — Displayed on homepage services section
+# =============================================================================
+
+items:
+  - name: "Cloud Migration"
+    description: "End-to-end migration of on-premise workloads to cloud platforms with minimal downtime and risk."
+
+  - name: "Infrastructure Design"
+    description: "Architecture design for scalable, resilient, and cost-optimized cloud infrastructure."
+
+  - name: "DevOps Consulting"
+    description: "CI/CD pipeline design, automation strategy, and team enablement for faster delivery cycles."
+
+  - name: "Security Assessment"
+    description: "Cloud security audits, compliance reviews, and implementation of security best practices."
+
+  - name: "Performance Optimization"
+    description: "Analysis and optimization of cloud costs, application performance, and infrastructure efficiency."
+
+  - name: "Technical Training"
+    description: "Workshops and training sessions on cloud technologies, DevOps practices, and modern tooling."

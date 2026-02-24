@@ -1,0 +1,51 @@
+{{/* ==========================================================================
+Contact Form — With honeypot spam protection
+========================================================================== */}}
+
+<form id="contact-form" action="{{ site.Params.contactEndpoint }}" method="POST" class="space-y-6">
+
+    {{/* Honeypot field — hidden from users, catches bots */}}
+    <div class="hidden" aria-hidden="true">
+        <label for="website">Website</label>
+        <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
+    </div>
+
+    {{/* Name */}}
+    <div>
+        <label for="name" class="mb-2 block text-sm font-medium text-surface-700 dark:text-surface-300">
+            {{ i18n "formName" }}
+        </label>
+        <input type="text" name="name" id="name" required autocomplete="name"
+            class="w-full rounded-lg border border-surface-300 bg-white px-4 py-3 text-surface-800 placeholder-surface-400 transition-colors focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 dark:border-surface-700 dark:bg-surface-800 dark:text-surface-200 dark:placeholder-surface-500 dark:focus:border-primary-400"
+            placeholder="{{ i18n " formNamePlaceholder" }}">
+    </div>
+
+    {{/* Email */}}
+    <div>
+        <label for="email" class="mb-2 block text-sm font-medium text-surface-700 dark:text-surface-300">
+            {{ i18n "formEmail" }}
+        </label>
+        <input type="email" name="email" id="email" required autocomplete="email"
+            class="w-full rounded-lg border border-surface-300 bg-white px-4 py-3 text-surface-800 placeholder-surface-400 transition-colors focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 dark:border-surface-700 dark:bg-surface-800 dark:text-surface-200 dark:placeholder-surface-500 dark:focus:border-primary-400"
+            placeholder="{{ i18n " formEmailPlaceholder" }}">
+    </div>
+
+    {{/* Message */}}
+    <div>
+        <label for="message" class="mb-2 block text-sm font-medium text-surface-700 dark:text-surface-300">
+            {{ i18n "formMessage" }}
+        </label>
+        <textarea name="message" id="message" required rows="5"
+            class="w-full rounded-lg border border-surface-300 bg-white px-4 py-3 text-surface-800 placeholder-surface-400 transition-colors focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 dark:border-surface-700 dark:bg-surface-800 dark:text-surface-200 dark:placeholder-surface-500 dark:focus:border-primary-400"
+            placeholder="{{ i18n " formMessagePlaceholder" }}"></textarea>
+    </div>
+
+    {{/* Submit */}}
+    <button type="submit" class="btn-primary w-full sm:w-auto" data-loading="{{ i18n " formSending" }}"
+        data-success="{{ i18n " formSuccess" }}" data-error="{{ i18n " formError" }}">
+        {{ i18n "formSubmit" }}
+    </button>
+
+    {{/* Status message */}}
+    <div id="form-status" class="mt-4 text-sm font-medium" aria-live="polite"></div>
+</form>
